@@ -1,59 +1,88 @@
-# UserHub
+Aplicación Angular 17 (modo no-standalone) que permite listar y filtrar usuarios obtenidos desde una API pública utilizando interceptores HTTP y pipes personalizados.
+📋 Descripción del Proyecto
+UserHub es una aplicación web que consume la API de JSONPlaceholder para mostrar información de usuarios en tarjetas (cards) con un diseño limpio y moderno. La aplicación implementa interceptores HTTP para el manejo de peticiones y pipes personalizados para el formateo y filtrado de datos.
+🚀 Características
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 20.3.6.
+Listado de usuarios desde API pública
+Interceptor HTTP personalizado para todas las peticiones
+Pipes personalizados para formateo y filtrado
+Diseño responsive con cards
+Filtrado en tiempo real por ciudad
 
-## Development server
+🛠️ Tecnologías Utilizadas
 
-To start a local development server, run:
+Angular 17 (modo no-standalone)
+TypeScript
+RxJS
+HTML5 & CSS3
+JSONPlaceholder API
 
-```bash
+
+Instalación
+
+# Clonar el repositorio
+git clone pereperepere
+
+# Navegar al directorio
+cd userhub
+
+# Instalar dependencias
+npm install
+
+# Ejecutar la aplicación
 ng serve
-```
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+# Abrir en el navegador
+http://localhost:4200
 
-## Code scaffolding
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+Estructura del Proyecto
 
-```bash
-ng generate component component-name
-```
+Funcionalidades Implementadas
+1. Interceptor HTTP (http-interceptor.service.ts)
+El interceptor personalizado realiza las siguientes funciones:
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+Header personalizado: Agrega X-App-Name: UserHub a todas las peticiones HTTP
+Logging de peticiones: Muestra "⏳ Enviando solicitud HTTP..." antes de cada petición
+Logging de respuestas: Muestra "✅ Respuesta recibida" cuando llega la respuesta
+Manejo de errores global:
 
-```bash
-ng generate --help
-```
+Error 404: "❌ Error 404: Recurso no encontrado"
+Error 500: "❌ Error 500: Error interno del servidor"
+Otros errores: Mensaje personalizado con código y descripción
 
-## Building
+Pipes Personalizados
+a. capitalizeName Pipe
+Transforma nombres completos poniendo en mayúscula la primera letra de cada palabra.
+Ejemplo:
 
-To build the project run:
+Entrada: "juan pérez" → Salida: "Juan Pérez"
+Entrada: "MARIA GARCIA" → Salida: "Maria Garcia"
 
-```bash
-ng build
-```
+b. filterByCity Pipe
+Filtra un array de usuarios por ciudad basándose en un término de búsqueda.
+Características:
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+Búsqueda case-insensitive
+Búsqueda parcial (includes)
+Retorna array completo si no hay filtro
 
-## Running unit tests
+API Utilizada
+Endpoint: https://jsonplaceholder.typicode.com/users
+Datos obtenidos:
 
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
+Nombre completo
+Username
+Email
+Teléfono
+Ciudad
+Empresa
+Sitio web
 
-```bash
-ng test
-```
+Cómo Usar la Aplicación
 
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+Al cargar la aplicación, se obtienen automáticamente todos los usuarios
+Abre la consola del navegador para ver los mensajes del interceptor
+Usa el campo de búsqueda para filtrar usuarios por ciudad
+Observa cómo el pipe filterByCity actualiza la lista en tiempo real
+Los nombres se muestran capitalizados gracias al pipe capitalizeName
