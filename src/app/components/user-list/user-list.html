@@ -1,1 +1,66 @@
-<p>user-list works!</p>
+<div class="container">
+  <header class="header">
+    <h1>👥 UserHub</h1>
+    <p>Gestión de usuarios desde API pública</p>
+  </header>
+
+  <div class="search-section">
+    <div class="search-box">
+      <label for="citySearch">🔍 Filtrar por ciudad:</label>
+      <input
+        type="text"
+        id="citySearch"
+        [(ngModel)]="cityFilter"
+        placeholder="Ej: New York, London..."
+        class="search-input"
+      />
+    </div>
+  </div>
+
+  <div class="loading" *ngIf="loading">
+    <p>⏳ Cargando usuarios...</p>
+  </div>
+
+  <div class="cards-grid" *ngIf="!loading">
+    <div
+      class="card"
+      *ngFor="let user of users | filterByCity:cityFilter"
+    >
+      <div class="card-header">
+        <h2>{{ user.name | capitalizeName }}</h2>
+        <span class="username">@{{ user.username }}</span>
+      </div>
+
+      <div class="card-body">
+        <div class="info-row">
+          <span class="icon">📧</span>
+          <span>{{ user.email }}</span>
+        </div>
+
+        <div class="info-row">
+          <span class="icon">📞</span>
+          <span>{{ user.phone }}</span>
+        </div>
+
+        <div class="info-row">
+          <span class="icon">🏙️</span>
+          <span>{{ user.address.city }}</span>
+        </div>
+
+        <div class="info-row">
+          <span class="icon">🏢</span>
+          <span>{{ user.company.name }}</span>
+        </div>
+
+        <div class="info-row">
+          <span class="icon">🌐</span>
+          <span>{{ user.website }}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="no-results" *ngIf="!loading && (users | filterByCity:cityFilter).length === 0">
+    <p>😕 No se encontraron usuarios en esa ciudad</p>
+  </div>
+</div>

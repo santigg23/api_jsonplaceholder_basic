@@ -1,11 +1,11 @@
-import { Component, signal } from '@angular/core';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-root',
-  templateUrl: './app.html',
-  standalone: false,
-  styleUrl: './app.scss'
+  template: '<app-user-list></app-user-list>',
+  styles: [],
+  standalone: false
 })
-export class App {
-  protected readonly title = signal('UserHub');
+export class AppComponent {
+  title = 'UserHub';
 }

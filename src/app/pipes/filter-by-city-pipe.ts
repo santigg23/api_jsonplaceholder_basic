@@ -1,3 +1,4 @@
+// pipes/filter-by-city.pipe.ts
 import { Pipe, PipeTransform } from '@angular/core';
 
 @Pipe({
@@ -6,8 +7,14 @@ import { Pipe, PipeTransform } from '@angular/core';
 })
 export class FilterByCityPipe implements PipeTransform {
 
-  transform(value: unknown, ...args: unknown[]): unknown {
-    return null;
-  }
+  transform(users: any[], cityFilter: string): any[] {
+    if (!users || !cityFilter) {
+      return users;
+    }
 
+    const filter = cityFilter.toLowerCase();
+    return users.filter(user =>
+      user.address.city.toLowerCase().includes(filter)
+    );
+  }
 }
