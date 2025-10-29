@@ -21,7 +21,8 @@ JSONPlaceholder API
 Instalación
 
 # Clonar el repositorio
-git clone pereperepere
+Para SSH -> git clone git@github.com:santigg23/api_jsonplaceholder_basic.git
+Para HTTPS -> https://github.com/santigg23/api_jsonplaceholder_basic.git
 
 # Navegar al directorio
 cd userhub
